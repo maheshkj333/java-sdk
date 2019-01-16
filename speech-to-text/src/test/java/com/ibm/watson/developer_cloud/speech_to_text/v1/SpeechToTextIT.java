@@ -128,6 +128,28 @@ public class SpeechToTextIT extends WatsonServiceTest {
     service.setDefaultHeaders(getDefaultHeaders());
   }
 
+
+  @Test
+  public void testApiRefExample() {
+    try {
+      String filename = String.format(SPEECH_RESOURCE, "audio-file.flac");
+      RecognizeOptions recognizeOptions = new RecognizeOptions.Builder()
+          .audio(new File(filename))
+          .contentType("audio/flac")
+          .timestamps(true)
+          .wordAlternativesThreshold((float) 0.9)
+          .keywords(Arrays.asList("colorado", "tornado", "tornadoes"))
+          .keywordsThreshold((float) 0.5)
+          .build();
+
+      SpeechRecognitionResults speechRecognitionResults =
+          service.recognize(recognizeOptions).execute();
+      System.out.println(speechRecognitionResults);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Test get model.
    */

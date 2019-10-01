@@ -33,7 +33,7 @@ public class VisualRecognitionExample {
 
     System.out.println("Classify an image");
     ClassifyOptions options = new ClassifyOptions.Builder()
-        .imagesFile(new File("src/test/resources/visual_recognition/car.png"))
+        .imagesFile(new File("src/test/resources/visual_recognition/null"))
         .imagesFilename("car.png")
         .build();
     ClassifiedImages result = service.classify(options).execute().getResult();
